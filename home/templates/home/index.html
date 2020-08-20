@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container m-5">
+	<h4 class="display-4">All apps here:</h4>
+	<ul>
+		<li><a class="text-decoration-none" href="{% url "logger:loglist" %}" title="Logger">Logger</a></li>
+	</ul>
+</div>
+{% endblock content %}

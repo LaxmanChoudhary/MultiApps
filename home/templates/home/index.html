@@ -1,11 +1,18 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block content %}
-
 <div class="container m-5">
 	<h4 class="display-4">All apps here:</h4>
-	<ul>
-		<li><a class="text-decoration-none" href="{% url "logger:loglist" %}" title="Logger">Logger</a></li>
-	</ul>
+	{% if not user.is_authenticated %}
+    	    <p class="lead">You need to login to use some disabled app links</p>
+	{% else %}
+		<ul>
+			<li><a class="text-decoration-none" href="{% url "logger:loglist" %}" title="Logger">Logger</a> - Create your daily productivity logs</li>
+		</ul>
+	{% endif %}
 </div>
 {% endblock content %}
+
+{% block script %}
+    
+{% endblock script %}

@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -8,6 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
+    <link rel="icon" href="{% static "favicon.ico" %}">
     <!--Font awesome 
     <script src="https://kit.fontawesome.com/687d560f4c.js" crossorigin="anonymous"></script>
     -->
@@ -17,9 +19,16 @@
   <body>
     <!-- Image and text -->
     <nav class="navbar navbar-light border-bottom">
-      <a class="navbar-brand" href="{% url "home:index" %}">
+      <a class="navbar-brand" href="{% url 'home:index' %}">
         MultiApps
       </a>
+        <ul class="navbar-nav">
+        {% if user.is_authenticated %}
+            <li class="nav-item"><a href="{% url "logout" %}?next={% url "home:index" %}" title="">Logout</a></li>
+        {% else %}
+            <li class="nav-item"><a href="{% url "login" %}?next={{ request.path }}">Login</a></li>
+        {% endif %}
+        </ul>
     </nav>
 
     {% block content %}

@@ -1,1 +1,18 @@
 {% extends "base.html" %}
+
+{% block content %}
+    <div class="container m-5">
+    	<div class="float-right">
+    		<p><a href="#" title="">Create a Log</a> | 
+    		<a href="{% url "logger:boardlist" %}">Look by board</a></p>   		
+    	</div>
+    	<h4 class="display-4">Your Logs:</h4>
+    	<ul>
+    		{% for topic in topic_list %}
+    			<li>{{ topic.name|title }} - {{ topic.date }}<br>
+    				&nbsp;&nbsp;<a href="#">Edit</a> | 
+    				<a href="#">Delete</a></li>
+    		{% endfor %}
+    	</ul>
+    </di>
+{% endblock content %}

@@ -18,21 +18,40 @@
   </head>
   <body>
     <!-- Image and text -->
-    <nav class="navbar navbar-light border-bottom">
+    <nav class="navbar navbar-expand-md navbar-light border-bottom">
       <a class="navbar-brand" href="{% url 'home:index' %}">
         MultiApps
       </a>
-        <ul class="navbar-nav">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav ml-auto">
         {% if user.is_authenticated %}
-            <li class="nav-item"><a href="{% url "logout" %}?next={% url "home:index" %}" title="">Logout</a></li>
+            <a class="nav-link" href="{% url "home:profile" %}">Profile</a>
+            <a class="nav-link" href="{% url "logout" %}?next={% url "home:index" %}" title="">Logout</a>
+            <form class="form-inline my-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
         {% else %}
-            <li class="nav-item"><a href="{% url "login" %}?next={{ request.path }}">Login</a></li>
+            <a class="nav-link" href="{% url "login" %}?next={{ request.path }}">Login</a>
         {% endif %}
-        </ul>
+        </div>
+      </div>
     </nav>
+
+    <span class="float-left">
+    {% if request %}
+        <p>Path: <span class="text-monospace mark p-1">{{ request.path }}</span></p>
+    {% else %}
+        <p>No path!</p>
+    {% endif %}
+    </span>
 
     {% block content %}
     {% endblock content %}
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 

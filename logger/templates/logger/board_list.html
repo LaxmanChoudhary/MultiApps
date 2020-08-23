@@ -5,7 +5,7 @@
     <h4 class="display-4">Your Boards:</h4>
     <ul>
     	{% for board in board_list %}
-    		<li><a class="text-decoration-none" href="#">{{ board.name }}</a></li>
+    		<li><a class="text-decoration-none" href="{% url "logger:boarddetail" board.id %}">{{ board.name }}</a></li>
     	{% endfor %}
     </ul>
 </div>

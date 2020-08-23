@@ -3,16 +3,20 @@
 {% block content %}
     <div class="container m-5">
     	<div class="float-right">
-    		<p><a href="#" title="">Create a Log</a> | 
+    		<p><a href="{% url "logger:logcreate" %}" title="">Create a Log</a> | 
     		<a href="{% url "logger:boardlist" %}">Look by board</a></p>   		
     	</div>
     	<h4 class="display-4">Your Logs:</h4>
-    	<ul>
-    		{% for topic in topic_list %}
-    			<li>{{ topic.name|title }} - {{ topic.date }}<br>
-    				&nbsp;&nbsp;<a href="#">Edit</a> | 
-    				<a href="#">Delete</a></li>
-    		{% endfor %}
-    	</ul>
+        {% if topic_list %}
+        <ul>
+            {% for topic in topic_list %}
+                <li><a class="text-decoration-none" href="{% url "logger:logdetail" topic.id %}">{{ topic.name|title }}</a> - {{ topic.date }}<br>
+                    &nbsp;&nbsp;<a href="#">Edit</a> | 
+                    <a href="#">Delete</a></li>
+            {% endfor %}
+        </ul>
+        {% else %}
+            <p class="alert alert-info">You don't have any logs</p>
+        {% endif %}
     </di>
 {% endblock content %}

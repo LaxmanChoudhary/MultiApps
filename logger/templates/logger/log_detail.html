@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container m-5">
+		<p><small>{{ topic.date }}</small></p>
+		<h4 class="display-4">{{ topic.name }}</h4><small> from <a class="text-decoration-none" href="{% url "logger:boardlist" %}">{{ topic.boards }}</a></small>
+		<p>{{ topic.description }}</p>
+	</div>
+{% endblock content %}

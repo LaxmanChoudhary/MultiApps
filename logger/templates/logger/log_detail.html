@@ -1,9 +1,11 @@
 {% extends "base.html" %}
-
+{% block title %}log_detail{% endblock %}
 {% block content %}
     <div class="container m-5">
+    	<span class="float-md-right">
+    		<a href="{% url "logger:log_update" topic.id %}">Edit</a> | <a href="{% url "logger:log_delete" topic.id %}">Delete</a> | <a href="{% url "logger:log_list" %}">Back</a></span>
 		<p><small>{{ topic.date }}</small></p>
-		<h4 class="display-4">{{ topic.name }}</h4><small> from <a class="text-decoration-none" href="{% url "logger:boardlist" %}">{{ topic.boards }}</a></small>
+		<h4 class="display-4">{{ topic.name }}</h4><small> from <a class="text-decoration-none" href="{% url "logger:board_list" %}">{{ topic.boards }}</a></small>
 		<p>{{ topic.description }}</p>
 	</div>
 {% endblock content %}

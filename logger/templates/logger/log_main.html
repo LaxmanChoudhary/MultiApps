@@ -1,22 +1,21 @@
 {% extends "base.html" %}
-
+{% block title %}myLogs{% endblock %}
 {% block content %}
     <div class="container m-5">
-    	<div class="float-right">
-    		<p><a href="{% url "logger:logcreate" %}" title="">Create a Log</a> | 
-    		<a href="{% url "logger:boardlist" %}">Look by board</a></p>   		
+    	<div class="float-md-right">
+    		<p>{% if bc < 1 %}<a href="{% url "logger:board_create" %}?next={{ next }}">Create Board </a>{% else %}<a href="{% url "logger:log_create" %}">Create a Log</a> | <a href="{% url "logger:board_list" %}">Boards</a>{% endif %}</p>
     	</div>
     	<h4 class="display-4">Your Logs:</h4>
         {% if topic_list %}
         <ul>
             {% for topic in topic_list %}
-                <li><a class="text-decoration-none" href="{% url "logger:logdetail" topic.id %}">{{ topic.name|title }}</a> - {{ topic.date }}<br>
-                    &nbsp;&nbsp;<a href="#">Edit</a> | 
-                    <a href="#">Delete</a></li>
+                <li><a class="text-decoration-none" href="{% url "logger:log_detail" topic.id %}">{{ topic.name|title }}</a> - {{ topic.date }}<br>
+                    &nbsp;&nbsp;<a href="{% url "logger:log_update" topic.id %}">Edit</a> | 
+                    <a href="{% url "logger:log_delete" topic.id %}">Delete</a></li>
             {% endfor %}
         </ul>
         {% else %}
-            <p class="alert alert-info">You don't have any logs</p>
+            <p class="alert alert-info">You don't have any log {% if bc < 1 %}and board as well{% endif %}</p>
         {% endif %}
-    </di>
+    </div>
 {% endblock content %}

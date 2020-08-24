@@ -8,7 +8,7 @@
 	<h4 class="display-4">All apps here:</h4>
 	{% if not user.is_authenticated %}<p class="lead">You need to login to use some disabled apps:</p>{% endif %}
 		<ul>
-			<li><a class="text-decoration-none {% if not user.is_authenticated %}disabledapp{% endif %}" href="{% url "logger:loglist" %}" title="Logger">Logger</a> - Create your daily productivity logs</li>
+			<li><a class="text-decoration-none {% if not user.is_authenticated %}disabledapp{% endif %}" href="{% url "logger:log_list" %}" title="Logger">Logger</a> - Create your daily productivity logs</li>
 		</ul>
 </div>
 {% endblock content %}

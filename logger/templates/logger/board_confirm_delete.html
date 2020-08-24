@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}delet?{% endblock %}
+{% block content %}
+    <div class="container m-5">
+    	<h4 class="display-4">Delete board.</h4>
+    	<p>Are you sure to delete the board? {{ Board.name }}</p>
+    	<form action="" method="post">
+    		{% csrf_token %}
+    		<input type="submit" value="Yes, Delete">
+    		<input type="submit" value="Cancel" onclick="window.location='{% url "logger:board_list" %}'; return false;">
+    	</form>
+    </div>
+{% endblock content %}

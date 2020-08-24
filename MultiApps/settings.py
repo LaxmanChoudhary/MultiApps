@@ -38,10 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #extensions
+    #'social_django',
 
     #installed apps
     'home.apps.HomeConfig',
-    'logger.apps.LoggerConfig'
+    'logger.apps.LoggerConfig',
 ]
 
 MIDDLEWARE = [
@@ -52,6 +53,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    #social-auth-app-django
+    #'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'MultiApps.urls'
@@ -67,10 +71,29 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                #social-auth-app-django
+                
+                #'social_django.context_processors.backends',
+                #'social_django.context_processors.login_redirect',
             ],
         },
     },
 ]
+
+#Adding backends for social-login
+#social-auth-app-django ref- http://python-social-auth.readthedocs.org/
+#https://simpleisbetterthancomplex.com/tutorial/2016/10/24/how-to-add-social-login-to-django.html
+
+'''
+AUTHENTICATION_BACKENDS = (
+    #social-auth-app-django -GitHub
+    'social_core.backends.github.GithubOAuth2',
+
+    #'social_core.backends.twitter.TwitterOAuth',
+    #'social_core.backends.facebook.FacebookOAuth2',
+)
+'''
 
 WSGI_APPLICATION = 'MultiApps.wsgi.application'
 

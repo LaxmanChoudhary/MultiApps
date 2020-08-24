@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+   {% if form.errors %}
+       <p>Username or Password didn't match!</p>
+   {% endif %}
+
+	{% if next %}
+		{% if user.is_authenticated %}
+			<p>Aceess not granted! Try with the account having access</p>
+		{% else %}
+			<p>Please login to proceed</p>
+    	{% endif %}
+    {% enif %}
+
+    <form action="{% url "login" %}" method="post">
+    	{% csrf_token %}
+    	{{ form.as_p }}
+    	<input type="submit" value="Login">
+    	<input type="hidden" name="next" value="{{ next }}">
+    </form>
+
+    {% if settings.SOCIAL_AUTH_GITHUB_KEY %}
+    <a href="{% url "social:begin" 'github'%}?next={{ next }}"><i class="fa fa-github" aria-hidden="true"></i>Login with GitHub</a>
+    {% endif %}
+{% endblock content %}

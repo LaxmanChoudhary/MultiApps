@@ -100,12 +100,21 @@ WSGI_APPLICATION = 'MultiApps.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
+#addPostgreSQL ref-https://tutorial-extensions.djangogirls.org/en/optional_postgresql_installation/
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE':'django.db.backends.postgresql',
+        'NAME': 'multiapp',
+        'USER': 'django',
+        'PASSWORD': '123',
+        'HOST': 'localhost',
+        'PORT': '',
+
+        #'ENGINE': 'django.db.backends.sqlite3',
+        #'NAME': BASE_DIR / 'db.sqlite3',
     }
+
+
 }
 
 

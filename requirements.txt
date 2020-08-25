@@ -9,3 +9,6 @@ Markdown
 
 #for postgreSQL
 psycopg2
+
+#for heroku, a deployment server
+gunicorn

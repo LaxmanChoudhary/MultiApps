@@ -25,7 +25,9 @@ SECRET_KEY = 'x21_fxervmwfwq9l0z#ru+l2#6w-ac@14$a(cqo9^hh3c0sv3j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'morning-headland-28124.herokuapp.com',
+]
 
 AP_NAME = 'MultiApps'
 # Application definition

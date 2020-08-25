@@ -1,1 +1,1 @@
-web: gunicorn multiapps.wsgi
+web: gunicorn MultiApps.wsgi

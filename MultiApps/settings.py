@@ -26,8 +26,8 @@ SECRET_KEY = 'x21_fxervmwfwq9l0z#ru+l2#6w-ac@14$a(cqo9^hh3c0sv3j'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'morning-headland-28124.herokuapp.com',
     'localhost',
+    '.herokuapp.com',
 ]
 
 AP_NAME = 'MultiApps'

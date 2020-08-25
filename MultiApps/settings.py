@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'morning-headland-28124.herokuapp.com',
-    'localhost:5000',
+    'localhost',
 ]
 
 AP_NAME = 'MultiApps'

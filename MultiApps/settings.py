@@ -28,6 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'localhost',
     '.herokuapp.com',
+    '127.0.0.1',
 ]
 
 AP_NAME = 'MultiApps'

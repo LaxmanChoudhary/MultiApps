@@ -39,6 +39,9 @@ urlpatterns = [
 
 ]
 
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+urlpatterns += staticfiles_urlpatterns()
+print(str(staticfiles_urlpatterns()))
 #social-django-urls-added
 '''
 try:

@@ -14,5 +14,16 @@ a django site!
 		`git push heroku master`  (push changes to heroku)
 		`heroku open`  (open web-app)
 
-> Tip: to add your dependencies to requirement.txt  
-	pip freeze > requirement.txt
+**Tip**:  
+* to add your dependencies to requirement.txt  
+`pip freeze > requirement.txt`  
+
+**Site Preview Here**: [Multiapps](https://morning-headland-28124.herokuapp.com/)  
+Deployed on [Heroku](https://www.heroku.com).  
+*neglect the url, just a random one by heroku*.  
+local login credentials
+```
+username: user1
+password: ab12cd34
+```
+

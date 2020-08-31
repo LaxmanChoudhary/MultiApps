@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% regroup tasks by task_group as groups %}
+	<div class="container m-5">
+		<div class="row-cols-1">
+			{% for group in groups %}
+				<div class="col-md m-3">
+					<a class="text-decoration-none" data-toggle="collapse" href="#{{group.grouper}}" role="button" aria-expanded="false" aria-controls="{{group.grouper}}">
+						<h3>{{ group.grouper }}</h3>
+					
+					<div class="collapse" id="{{group.grouper}}">
+						<ul class="list-group list-group-flush border">
+						{% for task in group.list %}
+						<li class="list-group-item">
+							<a class="text-decoration-none" href="#">{{ task }}</a>
+							<span class="badge badge-danger float-right">
+								{% if task.completed %}
+									completed
+								{% else %}
+									Not completed
+								{% endif %}	
+							</span>
+						</li>
+						{% endfor %}
+						</ul>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock content %}

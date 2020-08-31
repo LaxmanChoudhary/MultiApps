@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/todo.css' %}">
+{% endblock head %}
+
+{% block title %}Todo{% endblock title %}
+
+{% block content %}
+	<div class="container m-5">
+		<a class="btn btn-warning" href="{% url 'todo:group_view' %}">todo-groups <span class="badge badge-dark">{{ groups_count }}</span>
+		</a>
+		<h1 class="display-1 text-center font-weight-bold todo">todos</h1>
+		<p class="lead">Quick todos:</p>
+		<div>
+			<ul class="list-group list-group-flush">
+				{% for task in recent_tasks %}
+					<li class="list-group-item"><a href="#">{{ task }}</a></li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+{% endblock content %}

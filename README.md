@@ -7,12 +7,12 @@ a django site!
 	* Suggestions:  
 		Error in `git push heroku master` refer [here](https://stackoverflow.com/a/63573388/8614751)  
 		Error in `heroku ps:scale web=1` refer [here](https://stackoverflow.com/a/63584726/8614751)  
-	* Follow the pattern, once basic is done.
-		`git add . `  (add changes to local git)
-		`git commit -m "msg"`  (commit changes)
-		`git push -u origin master` (optional- if you also manage your git repo)
-		`git push heroku master`  (push changes to heroku)
-		`heroku open`  (open web-app)
+	* Follow the pattern, once basic is done.  
+		`git add . `  (add changes to local git)  
+		`git commit -m "msg"`  (commit changes)  
+		`git push -u origin master` (optional- if you also manage your git repo)  
+		`git push heroku master`  (push changes to heroku)  
+		`heroku open`  (open web-app)  
 
 **Tip**:  
 * to add your dependencies to requirement.txt  
@@ -21,10 +21,8 @@ a django site!
 **Site Preview Here**: [Multiapps](https://morning-headland-28124.herokuapp.com/)  
 Deployed on [Heroku](https://www.heroku.com).  
 *neglect the url, just a random one by heroku*.  
-local login credentials
+local login .
 ```
 username: user1
 password: ab12cd34
 ```
-
-

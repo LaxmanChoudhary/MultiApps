@@ -36,13 +36,15 @@ urlpatterns = [
 
     #apps
     path('logger/', include('logger.urls')),
+    path('todo/', include('todo.urls')),
 
 ]
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns += staticfiles_urlpatterns()
-print(str(staticfiles_urlpatterns()))
-#social-django-urls-added
+
+
+# social-django-urls-added
 '''
 try:
     from . import github_settings

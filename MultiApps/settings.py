@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     #installed apps
     'home.apps.HomeConfig',
     'logger.apps.LoggerConfig',
+    'todo.apps.TodoConfig',
 ]
 
 MIDDLEWARE = [
@@ -164,10 +165,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "home", "static"),
 ]
-
-#for debug
-#print('Sroot', STATIC_ROOT)
-#print('Slist', STATICFILES_DIRS[0])
 
 #for heroku maybe
 import dj_database_url

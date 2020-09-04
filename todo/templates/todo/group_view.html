@@ -1,10 +1,13 @@
-{% extends "base.html" %}
-{% block content %}
-{% regroup tasks by task_group as groups %}
+{% extends "base.html" %} {% block content %}
 <div class="container mt-5 m-sm-5">
-	<p class="float-right"><a class="text-decoration-none" href="{% url 'todo:todo_main' %}">Tasks</a></p>
+	<a class="btn btn-primary" href="{% url 'todo:task_list' %}">Tasks</a>
+	<a class="float-right text-decoration-none" href="{% url 'todo:todo_main' %}"
+		>todos</a
+	>
+
+<!--AddGroup-toggle-button-->
 	<button
-		class="btn btn-primary"
+		class="btn btn-warning"
 		id="AddGroupButton"
 		type="button"
 		data-toggle="collapse"
@@ -12,6 +15,19 @@
 	>
 		Add Group
 	</button>
+
+<!--DelGroup-toggle-button-->
+	<button
+		class="btn btn-danger"
+		id="DelGroupButton"
+		type="button"
+		data-toggle="collapse"
+		data-target="#DelGroup"
+	>
+		Delete Group
+	</button>
+
+<!--AddGroup-toggle-form start-->
 	<div id="AddEditGroup" class="collapse">
 		<form action="{% url 'todo:group_create' %}" method="post">
 			<div class="form-group border m-3 p-3">
@@ -29,6 +45,36 @@
 			<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
 	</div>
+<!--Addgroup-toggle-form -End-->
+
+<!--DeleteGroup-toggle-form start-->
+	<div id="DelGroup" class="collapse">
+		<ul class="list-group list-group-flush mt-2">
+			{% for grp in grps %}
+			<li class="list-group-item">
+				{{ grp.name }}
+				<form
+					method="post"
+					action="{% url 'todo:group_delete' grp.id %}?next={{request.path}}"
+					role="form"
+					class="float-right"
+				>
+					{% csrf_token %}
+					<button
+						class="btn btn-danger btn-sm"
+						type="submit"
+						name="submit_delete"
+					>
+						Delete
+					</button>
+				</form>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+<!--DelGroup-toggle-form End-->
+
+	{% regroup tasks by task_group as groups %}
 	<div class="row-cols-1">
 		{% for group in groups %}
 		<div class="col-md m-3">
@@ -40,7 +86,7 @@
 				aria-expanded="false"
 				aria-controls="{{group.grouper}}"
 			>
-				<h3>{{ group.grouper }}</h3><span class="badge badge-info">{{ group.list|length }}</span>
+				<h3 class="text-dark">{{ group.grouper }}</h3>
 			</a>
 			<div class="collapse" id="{{group.grouper}}">
 				<ul class="list-group list-group-flush border">
@@ -52,9 +98,24 @@
 							>{{ task }}</a
 						>
 						{% if task.completed %}
-						<span class="badge badge-success float-right">completed</span>
+						<form
+							method="post"
+							action="{% url 'todo:task_delete' task.id %}?next={{request.path}}"
+							role="form"
+							class="float-right"
+						>
+							{% csrf_token %}
+							<button
+								class="btn btn-danger btn-sm"
+								type="submit"
+								name="submit_delete"
+							>
+								Delete
+							</button>
+						</form>
+						<span class="badge badge-success">completed</span>
 						{% else %}
-						<span class="badge badge-danger float-right">Not completed</span>
+						<span class="badge badge-danger">Not completed</span>
 						{% endif %}
 					</li>
 					{% endfor %}

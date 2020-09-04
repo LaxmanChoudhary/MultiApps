@@ -18,7 +18,7 @@ class TaskGroup(models.Model):
 class Task(models.Model):
 	title = models.CharField(max_length=256)
 	text = models.TextField(blank=True, null=True)
-	task_group = models.ForeignKey(TaskGroup, on_delete=models.CASCADE, null=True)
+	task_group = models.ForeignKey(TaskGroup, on_delete=models.CASCADE, null=True, blank=True)
 	created_on = models.DateTimeField(auto_now_add=True)
 	completed = models.BooleanField(default=False)
 	creator = models.ForeignKey(
@@ -31,4 +31,4 @@ class Task(models.Model):
 		return self.title
 
 	class Meta:
-		ordering = ["created_on", "title"]
+		ordering = ["completed","created_on"]

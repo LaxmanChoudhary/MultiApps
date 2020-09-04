@@ -1,7 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container-fluid mt-5">
-	<div class="card-deck">
+	<a class="float-right text-decoration-none" href="{% url 'todo:todo_main' %}">todos</a>
+	<a class="btn btn-primary" href="{% url 'todo:task_list' %}">Tasks</a>
+	<a class="btn btn-warning" href="{% url 'todo:group_view' %}"
+		>todo-groups</a>
+
+	<div class="card-deck mt-2">
 		<div class="card col-sm-9">
 			<div class="card-body">
 				<div class="card-title"><strong>{{ task }}</strong></div>
@@ -24,7 +29,7 @@
 				{% else %}
 					<form
 						method="post"
-						action="{% url 'todo:status_incomplete' task.id %}?next={{ request.path }}"
+						action="{% url 'todo:status_incomplete' task.id %}"
 						role="form" 
 						class="d-inline"
 					>
@@ -34,7 +39,7 @@
 				{% endif %}
 					<form
 						method="post"
-						action="{% url 'todo:task_delete' task.id %}"
+						action="{% url 'todo:task_delete' task.id %}?next={{ request.path }}"
 						role="form"
 						class="d-inline"
 					>

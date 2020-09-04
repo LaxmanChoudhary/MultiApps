@@ -1,0 +1,71 @@
+{% extends "base.html" %} {% block content %}
+<div class="container mt-5">
+	<a class="btn btn-warning" href="{% url 'todo:group_view' %}"
+		>todo-groups</a>
+		<a class="float-right text-decoration-none" href="{% url 'todo:todo_main' %}">todos</a>
+	<table class="table mt-2">
+		<thead>
+    <tr>
+      <th scope="col">task</th>
+      <th scope="col">task-group</th>
+      <th scope="col">Status</th>
+      <th scope="col">Delete?</th>
+    </tr>
+  </thead>
+		<tbody>
+			{% for task in tasks %}
+			<tr>
+				<td class="">
+					<a
+						href="{% url 'todo:task_detail' task.id %}"
+						class="text-decoration-none"
+						>{{ task.title }}</a
+					>
+				</td>
+				<td class="text-muted">{{ task.task_group }}</td>
+				<td class="">
+					{% if task.completed is False %}
+					<form
+						method="post"
+						action="{% url 'todo:status_complete' task.id %}?next={{ request.path }}"
+						role="form"
+						class="d-inline"
+					>
+						{% csrf_token %}
+						<button class="btn btn-warning btn-sm" type="submit">Not Completed</button>
+					</form>
+					{% else %}
+					<form
+						method="post"
+						action="{% url 'todo:status_incomplete' task.id %}?next={{ request.path }}"
+						role="form"
+						class="d-inline"
+					>
+						{% csrf_token %}
+						<button class="btn btn-success btn-sm" type="submit">Completed</button>
+					</form>
+					{% endif %}
+				</td>
+				<td>
+					<form
+						method="post"
+						action="{% url 'todo:task_delete' task.id %}?next={{ request.path }}"
+						role="form"
+						class="d-inline"
+					>
+						{% csrf_token %}
+						<button
+							class="btn btn-danger btn-sm"
+							type="submit"
+							name="submit_delete"
+						>
+							Delete
+						</button>
+					</form>
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+{% endblock content %}

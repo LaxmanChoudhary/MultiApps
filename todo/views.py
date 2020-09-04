@@ -13,11 +13,20 @@ class TodoMain(owner.OwnerView):
 	def get(self, request):
 #		taskgroup = TaskGroup.objects.filter(creator=request.user)
 		gc = TaskGroup.objects.filter(creator=request.user).count()
-		rt = Task.objects.filter(completed=False)[:5]
+		rt = Task.objects.filter(creator=request.user).filter(completed=False)[:5]
 		ctx={'groups_count':gc, 'recent_tasks':rt}
 		return render(request, self.template_name, ctx)
 
 # model: task
+
+class TaskListView(owner.OwnerView):
+	template_name = "todo/task_list.html"
+
+	def get(self, request):
+		tasks = Task.objects.filter(creator=request.user)
+		ctx={'tasks':tasks}
+		return render(request, self.template_name, ctx)
+
 class TaskDetail(owner.OwnerView):
 	template_name= "todo/task_detail.html"
 
@@ -48,10 +57,13 @@ class TaskDelete(owner.OwnerView):
 	def post(self, request, pk):
 		task = get_object_or_404(Task, id=pk)
 		task.delete()
-		return redirect(self.success_url)
+		try:
+			return redirect(self.request.GET['next'])
+		except:
+			return redirect(self.success_url)
 
 class StatusComplete(owner.OwnerView):
-	success_url = "todo:todo_main"
+	success_url = reverse_lazy("todo:todo_main")
 	def post(self, request, pk):
 		task = get_object_or_404(Task, id=pk)
 		task.completed = True
@@ -62,7 +74,7 @@ class StatusComplete(owner.OwnerView):
 			return redirect(self.success_url)
 
 class StatusIncomplete(owner.OwnerView):
-	success_url = "todo:todo_main"
+	success_url = reverse_lazy("todo:todo_main")
 	def post(self, request, pk):
 		task = get_object_or_404(Task, id=pk)
 		task.completed = False
@@ -78,17 +90,28 @@ class GroupView(owner.OwnerView):
 
 	def get(self, request):
 		t = Task.objects.all().filter(creator=request.user).order_by('task_group__name')
+		grps = TaskGroup.objects.filter(creator=request.user)
 		form = GroupForm()
-		ctx={'tasks':t, 'form':form}
+		ctx={'tasks':t, 'form':form, 'grps':grps}
 		return render(request, self.template_name, ctx)
 
 class GroupCreate(owner.OwnerView):
-	success_url="todo:group_view"
+	success_url=reverse_lazy("todo:group_view")
 	def post(self, request):
 		grp = GroupForm(request.POST)
 		group = grp.save(commit=False)
 		group.creator = request.user
 		group.save()
+		try:
+			return redirect(self.request.GET['next'])
+		except:
+			return redirect(self.success_url)
+
+class GroupDeleteView(owner.OwnerView):
+	success_url= reverse_lazy("todo:group_view")
+	def post(self, request, pk):
+		grp = get_object_or_404(TaskGroup, id=pk)
+		grp.delete()
 		try:
 			return redirect(self.request.GET['next'])
 		except:

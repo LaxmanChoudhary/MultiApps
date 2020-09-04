@@ -5,6 +5,7 @@ app_name = 'todo'
 
 urlpatterns =[
 	path("", views.TodoMain.as_view(), name="todo_main"),
+	path("all-tasks", views.TaskListView.as_view(), name="task_list"),
 	path("task/create/", views.TaskCreate.as_view(), name="task_create"),
 	path("task/<int:pk>", views.TaskDetail.as_view(), name="task_detail"),
 	path("task/<int:pk>/complete", views.StatusComplete.as_view(), name="status_complete"),
@@ -13,4 +14,5 @@ urlpatterns =[
 
 	path("task-group/", views.GroupView.as_view(), name="group_view"),
 	path("task-group/create", views.GroupCreate.as_view(), name="group_create"),
+	path("task-group/<int:pk>/delete", views.GroupDeleteView.as_view(), name="group_delete"),
 ]

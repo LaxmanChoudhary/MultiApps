@@ -1,23 +1,57 @@
 {% extends "base.html" %}
 {% load static %}
 {% block head %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/todo.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/todo.css' %}" />
 {% endblock head %}
-
 {% block title %}Todo{% endblock title %}
-
-{% block content %}
-	<div class="container m-5">
-		<a class="btn btn-warning" href="{% url 'todo:group_view' %}">todo-groups <span class="badge badge-dark">{{ groups_count }}</span>
-		</a>
-		<h1 class="display-1 text-center font-weight-bold todo">todos</h1>
-		<p class="lead">Quick todos:</p>
-		<div>
-			<ul class="list-group list-group-flush">
-				{% for task in recent_tasks %}
-					<li class="list-group-item"><a href="#">{{ task }}</a></li>
-				{% endfor %}
-			</ul>
-		</div>
+{% block content%}
+<div class="container mt-5 m-sm-5">
+	<a class="btn btn-primary" href="{% url 'todo:task_create' %}">Add-task</a>
+	<a class="btn btn-warning" href="{% url 'todo:group_view' %}"
+		>todo-groups <span class="badge badge-dark">{{ groups_count }}</span>
+	</a>
+	<h1 class="display-1 text-center font-weight-bold todo">todos</h1>
+	<p class="lead">Unfinished tasks:</p>
+	<div>
+		<ul class="container list-group list-group-flush">
+			{% for task in recent_tasks %}
+			<li class="list-group-item">
+				<a
+					class="col-8 text-decoration-none"
+					href="{% url 'todo:task_detail' task.id %}"
+					>{{ task }}</a
+				>
+				<div class="float-md-right">
+					<form
+						method="post"
+						action="{% url 'todo:task_delete' task.id %}"
+						role="form"
+						class="d-inline"
+					>
+						{% csrf_token %}
+						<div style="display: inline">
+							<button
+								class="btn btn-danger btn-sm"
+								type="submit"
+								name="submit_delete"
+							>
+								Delete
+							</button>
+						</div>
+					</form>
+					<form
+						method="post"
+						action="{% url 'todo:status_complete' task.id %}?next={{ request.path }}"
+						role="form"
+						class="d-inline"
+					>
+						{% csrf_token %}
+						<button class="btn btn-info btn-sm m-1" type="submit">Done</button>
+					</form>
+				</div>
+			</li>
+			{% endfor %}
+		</ul>
 	</div>
+</div>
 {% endblock content %}

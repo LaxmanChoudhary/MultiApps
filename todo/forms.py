@@ -10,3 +10,8 @@ class TaskForm(forms.ModelForm):
 	class Meta:
 		model = Task
 		fields=['title', 'text', 'task_group']
+
+class GroupForm(forms.ModelForm):
+	class Meta:
+		model = TaskGroup
+		fields=['name']

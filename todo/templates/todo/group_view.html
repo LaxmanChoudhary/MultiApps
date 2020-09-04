@@ -1,32 +1,67 @@
 {% extends "base.html" %}
-
 {% block content %}
 {% regroup tasks by task_group as groups %}
-	<div class="container mt-5 m-sm-5">
-		<div class="row-cols-1">
-			{% for group in groups %}
-				<div class="col-md m-3">
-					<a class="text-decoration-none" data-toggle="collapse" href="#{{group.grouper}}" role="button" aria-expanded="false" aria-controls="{{group.grouper}}">
-						<h3>{{ group.grouper }}</h3>
-					
-					<div class="collapse" id="{{group.grouper}}">
-						<ul class="list-group list-group-flush border">
-						{% for task in group.list %}
-						<li class="list-group-item">
-							<a class="text-decoration-none" href="#">{{ task }}</a>
-							<span class="badge badge-danger float-right">
-								{% if task.completed %}
-									completed
-								{% else %}
-									Not completed
-								{% endif %}	
-							</span>
-						</li>
-						{% endfor %}
-						</ul>
-					</div>
-				</div>
-			{% endfor %}
-		</div>
+<div class="container mt-5 m-sm-5">
+	<p class="float-right"><a class="text-decoration-none" href="{% url 'todo:todo_main' %}">Tasks</a></p>
+	<button
+		class="btn btn-primary"
+		id="AddGroupButton"
+		type="button"
+		data-toggle="collapse"
+		data-target="#AddEditGroup"
+	>
+		Add Group
+	</button>
+	<div id="AddEditGroup" class="collapse">
+		<form action="{% url 'todo:group_create' %}" method="post">
+			<div class="form-group border m-3 p-3">
+				{% csrf_token %}
+				<label for="id_name">Name:</label>
+				<input
+					type="text"
+					name="name"
+					maxlength="128"
+					required
+					id="id_name"
+					class="form-control"
+				/>
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
 	</div>
+	<div class="row-cols-1">
+		{% for group in groups %}
+		<div class="col-md m-3">
+			<a
+				class="text-decoration-none"
+				data-toggle="collapse"
+				href="#{{group.grouper}}"
+				role="button"
+				aria-expanded="false"
+				aria-controls="{{group.grouper}}"
+			>
+				<h3>{{ group.grouper }}</h3><span class="badge badge-info">{{ group.list|length }}</span>
+			</a>
+			<div class="collapse" id="{{group.grouper}}">
+				<ul class="list-group list-group-flush border">
+					{% for task in group.list %}
+					<li class="list-group-item">
+						<a
+							class="text-decoration-none"
+							href="{% url 'todo:task_detail' task.id %}"
+							>{{ task }}</a
+						>
+						{% if task.completed %}
+						<span class="badge badge-success float-right">completed</span>
+						{% else %}
+						<span class="badge badge-danger float-right">Not completed</span>
+						{% endif %}
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</div>
 {% endblock content %}

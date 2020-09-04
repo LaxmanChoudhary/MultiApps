@@ -16,7 +16,7 @@ class TaskGroup(models.Model):
 		return self.name
 
 class Task(models.Model):
-	title = models.CharField(max_length=128)
+	title = models.CharField(max_length=256)
 	text = models.TextField(blank=True, null=True)
 	task_group = models.ForeignKey(TaskGroup, on_delete=models.CASCADE, null=True)
 	created_on = models.DateTimeField(auto_now_add=True)

@@ -18,7 +18,7 @@ a django site!
 * to add your dependencies to requirement.txt  
 `pip freeze > requirement.txt`  
 
-**Site Preview Here**: [Multiapps](https://https://multi-app-django.herokuapp.com/)  
+**Site Preview Here**: [Multiapps](https://multi-app-django.herokuapp.com/)  
 Deployed on [Heroku](https://www.heroku.com). 
 
 local login .

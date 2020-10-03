@@ -6,15 +6,15 @@ a django site!
 
 ### `heroku`
 - [Heroku-deploy-tutorial](https://devcenter.heroku.com/articles/getting-started-with-python#introduction)
-	- Suggestions:<br>
-		Error in `git push heroku master` refer [here](https://stackoverflow.com/a/63573388/8614751)<br>
-		Error in `heroku ps:scale web=1` refer [here](https://stackoverflow.com/a/63584726/8614751)<br>
 	- Follow the pattern when using `heroku cli`, once the first time setup is finished<br>
 		`git add` (add changes to local git)<br>
 		`git commit -m "<msg>"` (commit changes)<br>
 		`git push -u origin master` (optional- if you also manage your git repo)<br>
 		`git push heroku master` (push changes to heroku)<br>
 		`heroku open` (open web-app)<br>
+	- **`troubleshoot`**<br>
+		Error in `git push heroku master` refer [here](https://stackoverflow.com/a/63573388/8614751)<br>
+		Error in `heroku ps:scale web=1` refer [here](https://stackoverflow.com/a/63584726/8614751)<br>
 
 **Tip**:  
 - to add your dependencies to requirement.txt<br>

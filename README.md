@@ -16,10 +16,6 @@ a django site!
 		Error in `git push heroku master` refer [here](https://stackoverflow.com/a/63573388/8614751)<br>
 		Error in `heroku ps:scale web=1` refer [here](https://stackoverflow.com/a/63584726/8614751)<br>
 
-**Tip**:  
-- to add your dependencies to requirement.txt<br>
-`pip freeze > requirement.txt`<br>
-
 # `site preview here`:
 - [Multiapps](https://multi-app-django.herokuapp.com/)<br>
 - Deployed on [Heroku](https://www.heroku.com)<br>

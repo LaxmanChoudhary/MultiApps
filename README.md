@@ -1,6 +1,16 @@
 # MultiApps
 a django site!
 
+## `functionalities`
+- `CRUD operations`
+- `Local Authentication`
+- `Github authentication`
+- `Bootstrap integration`
+
+- Apps:
+  - Logger
+  - Plain django Todo
+
 ## #References
 - [Model field](https://docs.djangoproject.com/en/3.1/ref/models/fields/#textfield)<br>
 

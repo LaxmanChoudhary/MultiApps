@@ -5,11 +5,12 @@ a django site!
 
 ## `functionalities`
 - `CRUD operations`
-- `Local Authentication`
-- `Github authentication`
+- Authentication
+  - `Local`
+  - `Github`
 - `Bootstrap integration`
 
-- Apps:
+- Apps: `auth-protected`
   - Logger
   - Plain django Todo
 

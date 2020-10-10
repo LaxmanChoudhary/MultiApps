@@ -1,6 +1,8 @@
 # MultiApps
 a django site!
 
+![Multiapp preview gif](https://i.imgur.com/XsKg1jz.gif)
+
 ## `functionalities`
 - `CRUD operations`
 - `Local Authentication`

@@ -33,7 +33,7 @@ a django site!
 - [Multiapps](https://multi-app-django.herokuapp.com/)<br>
 - Deployed on [Heroku](https://www.heroku.com)<br>
 
-**`local login`**<br>
+**`heroku login`**<br>
 ```
 username: user1
 password: ab12cd34
